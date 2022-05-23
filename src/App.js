@@ -18,15 +18,51 @@ function App() {
 
   const handleSubmit= (e) => {
     e.preventDefault();
+    setRecipes([...recipes, recipeForm])
+    setRecipeForm(initialState)
   };
 
   const handleChange = (e, i) => {
 
     setRecipeForm({...recipeForm, [e.target.name]: e.target.value});
-    // setRecipeForm({...recipeForm, ingredients: [e.target.value] })
+
+    // if (e.target.name[i] === recipeForm.steps[i] ) {
+      
+    //   //const stepsClone = { ...e.currentTarget.value + e.target.value };
+    //   //console.log('working', stepsClone)
+    //   // console.log(e.currentTarget.id, recipeForm.steps[e.currentTarget.id])
+    //   // const test = recipeForm.steps[e.currentTarget.id]
+    //   // setRecipeForm({...recipeForm, test: e.target.value})
+    // }
+    // else {
+    //   setRecipeForm({...recipeForm, [e.target.name]: e.target.value});
+    // // setRecipeForm({...recipeForm, ingredients: [e.target.value] })
+    // }
   };
 
-  const addRecipeForm = (e) => {
+  const handleAddedIngredient = (e, i) => {
+    const ingredientsClone = [...recipeForm.ingredients]
+
+    ingredientsClone[i] = e.target.value
+
+    setRecipeForm({
+      ...recipeForm,
+      ingredients: ingredientsClone
+    });
+  };
+
+  const handleAddedStep = (e, i) => {
+    const stepsClone = [...recipeForm.steps]
+
+    stepsClone[i] = e.target.value
+
+    setRecipeForm({
+      ...recipeForm,
+      steps: stepsClone
+    });
+  };
+
+  const addRecipeForm = (e, i) => {
 
     const btnId = e.currentTarget.id;
 
@@ -43,8 +79,14 @@ function App() {
       stepsRef.current.value = ''
     };
 };
+
+const addRecipes = () => {
+  
+}
+
   
   console.log('RECIPEFORM', recipeForm);
+  console.log('Recipes', recipes)
   return (
     <div className="App">
       <RecipeForm
@@ -54,6 +96,9 @@ function App() {
         addRecipeForm={addRecipeForm}
         ingredientsRef={ingredientsRef}
         stepsRef={stepsRef}
+        handleAddedStep={handleAddedStep}
+        handleAddedIngredient={handleAddedIngredient}
+        addRecipes={addRecipes}
       />
     </div>
   );
