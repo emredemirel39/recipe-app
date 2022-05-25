@@ -1,15 +1,16 @@
 import React from "react";
 
 const RecipeForm = ({
-    recipeForm, handleSubmit, handleChange, addRecipeForm,
-    ingredientsRef, stepsRef,handleAddedStep, handleAddedIngredient,
-    addRecipes
+    recipeForm, handleSubmit, handleChange, addToRecipeForm,
+    ingredientsRef, stepsRef,handleAddedStepOnForm, handleAddedIngredientOnForm,
+    popup, handlePopup, deleteFromRecipeForm
 }) => {
 
     
 
-  return (
-    <form onSubmit={handleSubmit} className='recipe-form'>
+  return ( popup ? (
+    <div className="popup">
+     <form onSubmit={handleSubmit} className='recipe-form popup-inner'>
         <div className="input-box">
             <label >Title</label>
             <input onChange={handleChange} value={recipeForm.title} name='title' type="text" />
@@ -32,10 +33,10 @@ const RecipeForm = ({
                                                 id={`${i}`}
                                                 value={recipeForm.ingredients[i]}
                                                 name={recipeForm.ingredients[i]}
-                                                onChange={(e)=>handleAddedIngredient(e,i)}
+                                                onChange={(e)=>handleAddedIngredientOnForm(e,i)}
                                                 type="text"   
                                             />
-                                            <button type="button">Delete</button>
+                                            <button index={i} id="delete-ingredient-btn" onClick={(e) => deleteFromRecipeForm(e)} type="button">Delete</button>
                                         </li>
                                     )
                                 )
@@ -45,7 +46,7 @@ const RecipeForm = ({
                 )
             }
             <input ref={ingredientsRef}  name='ingredients' type="text" />
-            <button id="ingredients-btn" onClick={addRecipeForm} type='button'>Add Ingredient</button>
+            <button id="ingredients-btn" onClick={addToRecipeForm} type='button'>Add Ingredient</button>
         </div>
         <div className="input-box">
             <label >Steps</label>
@@ -60,10 +61,10 @@ const RecipeForm = ({
                                             <input
                                                 value={recipeForm.steps[i]}
                                                 name={recipeForm.steps[i]}
-                                                onChange={(e)=>handleAddedStep(e,i)}
+                                                onChange={(e)=>handleAddedStepOnForm(e,i)}
                                                 type="text"   
                                             />
-                                            <button type="button">Delete</button>
+                                            <button index={i} id="delete-step-btn" onClick={(e) => deleteFromRecipeForm(e)} type="button">Delete</button>
                                         </li>
                                     )
                                 )
@@ -73,14 +74,15 @@ const RecipeForm = ({
                 )
             }
             <input ref={stepsRef} name='steps' type="text" />
-            <button id='steps-btn' onClick={addRecipeForm} type='button'>Add Step</button>
+            <button id='steps-btn' onClick={addToRecipeForm} type='button'>Add Step</button>
         </div>
         <div className="btn-box">
             <button type='submit'>Add Recipe</button>
-            <button onClick={(e) => e.preventDefault()} type='button'>Close</button>
+            <button onClick={handlePopup} type='button'>Close</button>
         </div>
-    </form>
-  );
+     </form>
+    </div> 
+  ) : "" );
 };
 
 export default RecipeForm;
