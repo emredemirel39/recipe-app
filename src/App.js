@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, createRef } from "react";
 import RecipeCard from "./components/RecipeCard/RecipeCard";
 import RecipeForm from "./components/RecipeForm/RecipeForm";
 import { useLocalStorage } from "./hooks/useLocalStorage";
