@@ -1,0 +1,108 @@
+@import "../../style/globals";
+
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.popup {
+  animation: 1s ease-out 0s 1 slideFromTop;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 2s ease;
+}
+
+.popupInner{
+  position: relative;
+  width: 100%;
+  padding: 3rem;
+  max-width: 640px;
+  max-height: 800px;
+
+  background-color: $darkBgColor;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  input, textarea{
+    min-width: 400px;
+    min-height: 28px;
+    max-width: 400px;
+    max-height: 120px;
+    height: 28px;
+    outline: none;
+    border: none;
+    padding: 4px 0 4px 6px;
+    font-family: $mainFontFamily;
+  }
+
+  label{
+    color: $lightFontColor;
+    font-weight: bold;
+  }
+
+  ul{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+  }
+
+  li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.inputAndButtonBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.addBtn{
+  @include formButton($blueBtnColor, $darkFontColor, $hoverBtnGreen);
+}
+
+.submitBtn{
+  @include formButton($greenBtnColor, $darkFontColor, $hoverBtnGreen);
+}
+
+.closeBtn{
+  @include formButton($redBtnColor, $darkFontColor, $hoverBtnRed);
+}
+
+.deleteBtn{
+  @include formButton($redBtnColor, $darkFontColor, $hoverBtnRed);
+}
+
+.btnBox{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+

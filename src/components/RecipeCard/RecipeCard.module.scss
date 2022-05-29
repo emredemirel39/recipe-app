@@ -5,6 +5,55 @@
     color: $lightFontColor;
     display: flex;
     flex-direction: column;
-    width: 240px;
+    align-items: center;
+    width: 320px;
     word-break: break-all;
+    padding: 12px 8px;
+    border-radius: 12px;
+    text-align: center;
+    gap: 10px;
+
+    ul{
+        margin-bottom: 12px;
+    }
+
+    h3{
+        margin-bottom: 12px;
+        font-style: italic;
+    }
+
+    p, li{
+        text-align: justify;
+        margin-bottom: 4px;
+        font-style: italic;
+    }
+    
+}
+.moreLessBtn{
+    @include formButton($blueBtnColor, $darkFontColor, $hoverBtnGreen);
+}
+
+.editBtn{
+    @include formButton($orangeBtnColor, $darkFontColor, $hoverBtnOrange);
+}
+
+.deleteBtn{
+    @include formButton($redBtnColor, $darkFontColor, $hoverBtnRed);
+}
+
+.visible{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 3;
+}
+
+.hidden{
+    animation: 1s ease-out 0s 1 slideInFromTop;
+    display: none;
+}
+
+.btnBox{
+    display: flex;
+    gap: 6px;
 }
